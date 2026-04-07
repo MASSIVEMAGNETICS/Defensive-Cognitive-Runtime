@@ -1,0 +1,5 @@
+{
+  "file": "doctrine.py",
+  "sha256": "b0fd4fc74a42a6d16315abbc2c3c152fa2270b38eba7e776ac9092fbb6a149f6",
+  "note": "This file records the expected SHA-256 checksum of doctrine.py. If doctrine.py is modified without updating this manifest, the system will raise a TamperAlert on startup."
+}

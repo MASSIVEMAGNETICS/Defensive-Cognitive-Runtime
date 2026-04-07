@@ -1,0 +1,26 @@
+# PROTECTOR_STACK Default Configuration
+# This file is loaded at startup. Values here override .env defaults.
+
+runtime:
+  env: production
+  log_level: INFO
+  low_resource_mode: false
+  max_worker_threads: 4
+  scan_interval_seconds: 30
+  deep_scan_interval_seconds: 300
+
+policy:
+  strict_mode: true
+  auto_quarantine_high_risk: true
+  risk_threshold_warn: 0.4
+  risk_threshold_block: 0.7
+  risk_threshold_quarantine: 0.85
+  require_human_approval_above: 0.7
+
+audit:
+  chain_enabled: true
+
+api:
+  enabled: false
+  host: "127.0.0.1"
+  port: 8741
