@@ -1,0 +1,31 @@
+# PROTECTOR_STACK requirements
+# Python 3.11+
+
+# Core
+pydantic>=2.5.0
+pydantic-settings>=2.0,<3.0
+typer[all]>=0.9.0
+rich>=13.7.0
+
+# Storage
+sqlalchemy>=2.0.0
+
+# API (optional local service)
+# fastapi>=0.109.0
+# uvicorn>=0.27.0
+
+# File watching
+watchdog>=4.0.0
+
+# YAML config support
+pyyaml>=6.0.1
+
+# System monitoring
+psutil>=5.9.8
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+
+# Utilities
+python-dotenv>=1.0.0

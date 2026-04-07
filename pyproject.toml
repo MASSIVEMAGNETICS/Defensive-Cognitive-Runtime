@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "protector-stack"
+version = "1.0.0"
+description = "PROTECTOR_STACK: Defensive Cognitive Runtime - A guardian-class AI safety system"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+  {name = "MASSIVEMAGNETICS", email = "ops@massivemagnetics.io"},
+]
+keywords = ["ai-safety", "defensive-ai", "guardrails", "threat-detection"]
+dependencies = [
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.0,<3.0",
+    "typer[all]>=0.9.0",
+    "rich>=13.7.0",
+    "sqlalchemy>=2.0.0",
+    "watchdog>=4.0.0",
+    "pyyaml>=6.0.1",
+    "python-dotenv>=1.0.0",
+    "psutil>=5.9.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "pytest-asyncio>=0.23.0"]
+api = ["fastapi>=0.109.0", "uvicorn>=0.27.0"]
+
+[project.scripts]
+protector = "protector_stack.interface.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["protector_stack*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]

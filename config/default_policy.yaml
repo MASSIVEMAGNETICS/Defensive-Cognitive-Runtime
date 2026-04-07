@@ -1,0 +1,34 @@
+# PROTECTOR_STACK Additional Policy Rules (YAML format)
+# These rules are loaded on top of the built-in ruleset.
+# Add custom organization-specific rules here.
+
+rules:
+  # Example: Block any action involving a known bad actor
+  - rule_id: "CUSTOM-001"
+    name: block_known_bad_actor
+    description: "Block all actions from the known-bad actor ID 'compromised-agent-99'."
+    category: unknown
+    risk_level: critical
+    decision: hard_deny
+    conditions:
+      - actor_id_equals: "compromised-agent-99"
+    enabled: true
+    requires_approval: false
+    tags:
+      - custom
+      - actor_block
+
+  # Example: Audit all agent actions targeting production data
+  - rule_id: "CUSTOM-002"
+    name: audit_production_data_access
+    description: "Audit any agent action that targets a path containing 'production'."
+    category: agent_action
+    risk_level: medium
+    decision: allow_with_audit
+    conditions:
+      - target_contains: "production"
+    enabled: true
+    requires_approval: false
+    tags:
+      - custom
+      - production

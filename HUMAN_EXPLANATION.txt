@@ -1,0 +1,143 @@
+PROTECTOR_STACK — HUMAN EXPLANATION
+=====================================
+Version 1.0.0
+
+What is this?
+-------------
+PROTECTOR_STACK is a defensive AI safety system — a "guardian-class cognitive
+runtime" designed to watch over AI systems and protect humans from malicious or
+misaligned AI behavior.
+
+Think of it like an immune system for your computer, specifically designed to
+detect when AI programs are doing something dangerous, manipulative, or against
+your wishes.
+
+What it is NOT:
+- Not a chatbot
+- Not a persuasion engine
+- Not a ruler or autonomous decision-maker
+- Not a spy tool or offensive weapon
+
+What it IS:
+- A defensive monitoring system
+- A threat detector for AI misbehavior
+- A policy enforcement layer
+- A human-readable audit trail
+- A tool that helps YOU stay in control
+
+What does it do?
+----------------
+PROTECTOR_STACK runs on your computer and:
+
+1. WATCHES for suspicious AI behavior
+   - Monitors running processes for known dangerous tools
+   - Watches file system for suspicious changes
+   - Tracks AI agent tool calls and behaviors
+   - Detects prompt injection attacks (attempts to trick AI into ignoring its rules)
+   - Detects privilege escalation attempts (trying to get admin access)
+   - Detects data exfiltration attempts (trying to steal and send your data)
+
+2. SCORES threats in real-time
+   - Every observed event gets a risk score (0.0 = safe to 1.0 = critical)
+   - Multiple detection methods are combined for accuracy
+   - Low risk events are logged and allowed
+   - High risk events trigger alerts and may be blocked
+
+3. ENFORCES policies
+   - A rule engine decides: allow / audit / escalate / block
+   - Hard blocks for absolutely forbidden actions (malware, weapons, etc.)
+   - Human approval required for risky-but-allowed actions
+   - All decisions are explained in plain English
+
+4. RECORDS everything
+   - Every action, decision, and event is written to a tamper-evident audit log
+   - The log uses cryptographic signatures to detect if anyone has modified it
+   - Full "provenance chain" showing WHY each decision was made
+
+5. ALERTS humans
+   - Open alert queue for events requiring human review
+   - Incident management system for tracking ongoing threats
+   - Plain-language incident reports you can read and understand
+
+6. STAYS under your control
+   - You can pause, stop, or roll back at any time
+   - All high-risk actions require your approval
+   - The system cannot rewrite its own rules or expand its own authority
+   - Every hard limit is hardcoded and cannot be overridden by configuration
+
+How to Run It
+-------------
+
+STEP 1: Install dependencies
+  pip install -r requirements.txt
+
+STEP 2: Copy and configure .env
+  cp .env.example .env
+  (Edit .env to match your system if needed — defaults work fine to start)
+
+STEP 3: Run the demo to verify everything works
+  python -m protector_stack.interface.cli demo
+
+  You will see:
+  - BENIGN event: allowed with no warning
+  - SUSPICIOUS event: flagged with injection signals
+  - DANGEROUS event: blocked, quarantine recommended, incident created
+
+STEP 4: Start monitoring mode
+  python -m protector_stack.interface.cli start
+
+STEP 5: Check the alert queue
+  python -m protector_stack.interface.cli alerts
+
+STEP 6: Review incidents
+  python -m protector_stack.interface.cli incidents
+
+How to Operate It Safely
+-------------------------
+
+DAILY OPERATIONS:
+1. Run "protector alerts" each morning to review open alerts
+2. Acknowledge alerts you've investigated: use the review queue
+3. Check incidents for any open investigations
+4. Verify the audit chain periodically: "protector audit verify"
+
+REVIEWING ALERTS:
+- Each alert has a risk score (0.0–1.0) and detected signals
+- Signals tell you WHAT was detected (e.g., "ignore_previous_instructions",
+  "mimikatz_reference", "credential_dump_attempt")
+- Review the alert description to understand context
+- Mark as resolved when you've taken action, or dismissed if false positive
+
+UNDERSTANDING RISK SCORES:
+- 0.0–0.39: Low risk — informational, logged only
+- 0.40–0.69: Medium risk — logged, alert raised, human review recommended
+- 0.70–0.84: High risk — requires human approval before any action
+- 0.85–1.00: Critical — automatic incident creation, quarantine recommended
+
+WHAT TO DO WHEN YOU SEE A CRITICAL ALERT:
+1. Read the alert description and signals
+2. Check what process or agent triggered it
+3. If confirmed threat: quarantine the process (use CLI or approve the recommendation)
+4. Create or update the incident record with your notes
+5. Review audit log for full timeline
+6. Resolve the incident once contained
+
+IMPORTANT SAFETY NOTES:
+- The system will NEVER automatically execute offensive actions
+- The system will NEVER disable your ability to review and override its decisions
+- Hard-blocked actions (malware, weapons, etc.) CANNOT be approved — they are
+  permanently forbidden by the core doctrine
+- You can always stop the system: press Ctrl+C or run "protector stop"
+
+Known Limitations
+------------------
+- Process suspension requires OS-level permissions (may fail without admin rights)
+- File system monitoring watches configured paths only
+- Threat detection is heuristic-based — false positives are possible
+- No network blocking at the OS level — alerts are raised, but you must act
+- Does not analyze encrypted traffic content
+- Model interaction monitoring requires explicit event submission (passive only)
+
+For technical details, see MANUAL.md.
+For the threat model, see THREAT_MODEL.md.
+For architecture details, see ARCHITECTURE.md.
